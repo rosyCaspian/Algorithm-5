@@ -3,7 +3,6 @@ import ctypes
 
 class Array:
     """A dynamic array class."""
-    
     def __init__(self, cap=10):
         """Create an empty array."""
         self._len = 0
