@@ -1,9 +1,8 @@
-package src
-
 import "fmt"
 
+
 type array struct {
-	items []interface{}
+	items []interface{}  // 泛类型slice
 }
 
 func NewArray(capacity int) *array {
