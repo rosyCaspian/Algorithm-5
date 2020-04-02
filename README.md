@@ -1,4 +1,4 @@
-# Learning algorithm with 5 language 
+# Learning algorithm with 5 languages 
 
 `c++`  `golang ` `java`  `python`  `typescript`
 
