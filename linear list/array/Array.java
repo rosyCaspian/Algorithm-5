@@ -15,13 +15,11 @@ public class Array {
 
     // O(n)
     public void append(int item){
-        // 注释不许要解释代码在做什么，只需要解释 why how
         if (len == cap){
             cap = cap + ((cap >> 1) > 1 ? (cap >> 1):1);
             int[] newItems = new int[cap];
             for(int i=0;i<len;i++)
                 newItems[i] = items[i];
-            // java中数组名赋值是引用传递
             items = newItems;
         }
         items[len++] = item;

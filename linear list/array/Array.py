@@ -1,4 +1,5 @@
 # 因为 python 中 list 本身是动态的，所以引入原始数组，不实用 built-in list
+
 import ctypes
 
 class Array:

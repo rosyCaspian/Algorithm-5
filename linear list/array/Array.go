@@ -1,6 +1,5 @@
 import "fmt"
 
-
 type array struct {
 	items []interface{}  // 泛类型slice
 }
