@@ -1,6 +1,3 @@
-package com.mosh.linkedList.src;
-
-
 import java.util.NoSuchElementException;
 
 public class LinkedList {
