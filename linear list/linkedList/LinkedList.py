@@ -93,6 +93,41 @@ class LinkList:
         return self.indexOf(item) != -1
 
     # O(n)
+    def reverse(self):
+        if self._isEmpty(): return
+
+        previous = self._first
+        current = self._first._next
+        while current:
+            temp = current._next
+            current._next = previous
+            previous = current
+            current = temp
+
+        self._last = self._first
+        self._first = previous
+        self._last._next = None
+    
+    # O(n)
+    def getKthNodeFromTheEnd(self, k):
+        if self._isEmpty(): raise Exception("IllegalStateException")
+        if k > self._len: raise Exception("IllegalArgumentException")
+
+        current = self._first
+        end = self._first
+        for i in range(k-1):
+            end = end._next
+            # 如果不知道链表的长度的话
+            # if end == None:
+            #    raise Exception("IllegalArgumentException")
+        
+        while end is not self._last:
+            current = current._next
+            end = end._next
+        
+        return current._value
+        
+    # O(n)
     def printf(self):
         current = self._first
         output = "[ "

@@ -102,6 +102,49 @@ class LinkedList<T> {
   }
 
   // O(n)
+  reverse() {
+    if (this.isEmpty()) return;
+
+    let previous = this.first;
+    let current = this.first.next;
+    while (current !== null) {
+      let next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+
+    // 首尾引用交换
+    this.last = this.first;
+    this.first = previous;
+    // 反转后，最后一个节点的 next 滞空
+    this.last.next = null;
+  }
+
+  // O(n)
+  getKthNodeFromTheEnd(k: number) {
+    if (this.isEmpty()) throw new Error("IllegalStateEexception");
+    if (k > this.len) throw new Error("IllegalArgumentException");
+
+    let current = this.first;
+    let end = this.first;
+    for (let i = 0; i < k - 1; i++) {
+      end = end.next;
+      /*
+      如果不知道链表的长度的话
+      if(end === null)
+        throw new Error("IllegalArgumentException");
+      */
+    }
+
+    while (end !== this.last) {
+      current = current.next;
+      end = end.next;
+    }
+    return current.item;
+  }
+
+  // O(n)
   print() {
     let node = this.first;
     while (node) {

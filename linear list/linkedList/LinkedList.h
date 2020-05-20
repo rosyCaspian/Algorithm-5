@@ -67,6 +67,10 @@ public:
     // O(n)
     T *toArray();
     // O(n)
+    void reverse();
+    // O(n)
+    T getKthNodeFromTheEnd(int k);
+    // O(n)
     void print();
 };
 
@@ -122,7 +126,7 @@ template <typename T>
 void LinkedList<T>::removeFirst()
 {
     if (isEmpty())
-        throw std::out_of_range("NoSuchElementException!");
+        throw "NoSuchElementException!";
 
     if (pFirst == pLast)
         pFirst = pLast = nullptr;
@@ -138,7 +142,7 @@ template <typename T>
 void LinkedList<T>::removeLast()
 {
     if (isEmpty())
-        throw std::out_of_range("NoSuchElementException!");
+        throw "NoSuchElementException!";
 
     if (pFirst == pLast)
         pFirst = pLast = nullptr;
@@ -189,6 +193,57 @@ T *LinkedList<T>::toArray()
         current = current->next;
     }
     return array;
+}
+
+template <typename T>
+void LinkedList<T>::reverse()
+{
+    if (isEmpty())
+        return;
+
+    Node *previous = pFirst;
+    Node *current = pFirst->next;
+    while (current != nullptr)
+    {
+        Node *next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
+    }
+
+    pLast = pFirst;
+    pFirst = previous;
+    pLast->next = nullptr;
+}
+
+template <typename T>
+T LinkedList<T>::getKthNodeFromTheEnd(int k)
+{
+    if (isEmpty())
+        throw "IllegalStateException";
+
+    if (k > len)
+        throw "IllegalArgumentException";
+
+    Node *current = pFirst;
+    Node *end = pFirst;
+    for (int i = 0; i < k - 1; i++)
+    {
+        end = end->next;
+        /*
+        如果不知道链表的长度的话
+        if (!end)
+            throw "IllegalArgumentException";
+        */
+    }
+
+    while (end->next != nullptr)
+    {
+        current = current->next;
+        end = end->next;
+    }
+
+    return current->value;
 }
 
 template <typename T>

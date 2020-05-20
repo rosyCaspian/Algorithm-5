@@ -1,3 +1,6 @@
+package com.mosh.linkedList.src;
+
+
 import java.util.NoSuchElementException;
 
 public class LinkedList {
@@ -112,6 +115,52 @@ public class LinkedList {
             temp = temp.next;
         }
         System.out.printf("]\n");
+    }
+
+    // O(n)
+    public void reverse(){
+        if(isEmpty()) return;
+
+        var previous = first;
+        var current = first.next;
+        while(current != null){
+            var temp = current.next;
+            current.next = previous;
+            previous = current;
+            current = temp;
+        }
+
+        // 首尾引用交换
+        last = first;
+        first = previous;
+        // 反转后，最后一个节点的 next 滞空
+        last.next = null;
+    }
+
+    // O(n)
+    public int getKthNodeFromTheEnd(int k){
+        if(isEmpty()) throw new IllegalStateException();
+
+        if(k > len) throw new IllegalArgumentException();
+
+        var current = first;
+        var end = first;
+        for (int i = 0; i < k - 1; i++) {
+            end = end.next;
+            /*
+            如果不知道链表的长度的话
+            if(end == null)
+                throw new IllegalArgumentException();
+            */
+        }
+
+
+        while(end != last){
+            current = current.next;
+            end = end.next;
+        }
+
+        return current.value;
     }
 
     // O(1)
